@@ -1,0 +1,3 @@
+Forerun Community is a Digital Dao specializing in the blockchain industry and the decentralized finance. We aim to connect entrepreneurs, investors, executives, engineers, academics, industry experts, and others in the technology ecosystem. We have built a network of experts including technical and executive talent; top media and marketing resources; Fortune 500/Global 2000 companies; as well as other technology decision makers, influencers, and key opinion leaders. 
+
+Forerun Community uses this network as part of our commitment to help our partnership grow their business, so our operating teams provide entrepreneurs with access to expertise and insights across the entire spectrum of company building.123

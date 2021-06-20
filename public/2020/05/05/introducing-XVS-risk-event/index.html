@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Forerun Lab">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="false/img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="false/img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="Yolo：从XVS事件看借贷协议的治理与清算" />
+    <meta property="og:title" content="Yolo：从XVS事件看借贷协议的治理与清算" />
+    <meta property="twitter:title" content="Yolo：从XVS事件看借贷协议的治理与清算" />
+    
+
+    
+    <meta name="description" content="Yolo：从XVS事件看借贷协议的治理与清算">
+    <meta property="og:description" content="Yolo：从XVS事件看借贷协议的治理与清算" />
+    <meta property="twitter:description" content="Yolo：从XVS事件看借贷协议的治理与清算" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="Forerun, Yolo">
+    <link rel="shortcut icon" href="../../../../false/img/favicon.ico">
+
+    <title>Yolo：从XVS事件看借贷协议的治理与清算-Forerun Lab</title>
+
+    <link rel="canonical" href="../../../../false/2020/05/05/introducing-XVS-risk-event/">
+
+    <link rel="stylesheet" href="../../../../false/css/iDisqus.min.css"/>
+
+    
+    <link rel="stylesheet" href="../../../../false/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="../../../../false/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="../../../../false/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="../../../../false/js/jquery.min.js"></script>
+
+    
+    <script src="../../../../false/js/bootstrap.min.js"></script>
+
+    
+    <script src="../../../../false/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../../../false/">Forerun Lab</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="../../../../false/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="../../../../false/categories/life">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../false/categories/note">note</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../false/categories/tech">tech</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../../../../false/categories/tips">tips</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="../../../../false/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="../../../../false/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="../../../../false/search">SEARCH <img src="../../../../false/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AALefSb.img?h=801&w=1438&m=6&q=60&o=f&l=f&x=419&y=150')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="../../../../false/tags/xvs" title="XVS">
+                            XVS
+                        </a>
+                        
+                        <a class="tag" href="../../../../false/tags/lending" title="Lending">
+                            Lending
+                        </a>
+                        
+                        <a class="tag" href="../../../../false/tags/risk" title="risk">
+                            risk
+                        </a>
+                        
+                    </div>
+                    <h1>Yolo：从XVS事件看借贷协议的治理与清算</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                &#34;Yolo&#34;
+                         
+                        on 
+                        Tuesday, May 5, 2020
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+                <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#事件回顾">事件回顾</a></li>
+        <li><a href="#随手记录">随手记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                
+                <h2 id="事件回顾">事件回顾</h2>
+<p>Venus大幅的涨跌引发了无数讨论，各类阴谋论层出不穷。这里不概述事件了，用一个圈友的比喻作为引子。</p>
+<blockquote>
+<p>就是本来100个鸡蛋一个10块钱的，去花1w块钱把鸡蛋单价拉到一个20块。这样我100个鸡蛋就值2000块，然后我用价值2k的100个鸡蛋去抵押。换来的btc在我口袋里别人拿不走。抵押出去的鸡蛋被强制清算。
+<a href="https://imgtu.com/i/g5VJqf">
+  <img src="https://z3.ax1x.com/2021/05/19/g5VJqf.md.png" alt="g5VJqf.md.png">
+
+</a></p>
+</blockquote>
+<p>事件当中有一些大家关心的核心的问题：</p>
+<ol>
+<li>为什么XVS治理流程中会允许作为抵质押物的XVS拥有高达80%的质押率？怎么规避？</li>
+<li>这是什么问题？是中心化的问题？还是去中心化不成功的问题。</li>
+<li>如何避免连环清算的问题？</li>
+</ol>
+<h2 id="随手记录">随手记录</h2>
+<p>官方也在第一时间出了报告。<a href="https://blog.venus.io/venus-incident-report-xvs-liquidations-451be68bb08f">Venus Incident Report — XVS Liquidations</a>
+(<a href="https://blog.venus.io/venus-incident-report-xvs-liquidations-451be68bb08f">https://blog.venus.io/venus-incident-report-xvs-liquidations-451be68bb08f</a>)</p>
+<p><a href="https://imgtu.com/i/g5ViG9">
+  <img src="https://z3.ax1x.com/2021/05/19/g5ViG9.md.png" alt="g5ViG9.md.png">
+
+</a>
+从官方观点来看，他们认为弥补的方式有以下几种：1）加强抵质押品的监测。2）与预言机方面一同合作，降低价格的偏离。3）清算机制的再思考。沿着这些方向继续思考，站在Lending赛道的立场，有几个建设性的想法：
+- 抵质押品相关要素的确定是一个治理问题。什么样的币能够成为抵质押品？成为抵质押品以后低质押率是多少？从本次案例来看，XVS授权允许XVS币，并且治理机制授予XVS80%的质押率。通常来讲提案都通过了社区的审议，XVS的大户就会占据话语权，而经过审议的币种就带着更多大户的利益诉求。大户占据主要话语权并不是绝对的坏事，因为大户对于协议的治理贡献提升了协议的效率。但是我们需要警惕的是，大户的审议是否伤害了散户的利益，我的建议是，协议通过应当要增加一个前提要件：**既需要有一定比例的投票通过率和参与率，同时也要设置一个小额持有人的反对比率。**当小额持有人，反对数量or比例超过一定范围的时候，协议不予通过。为了激励小额持有人的参与，当有人提案的时候需要提交一定比例的保证金，当协议恰好是被小额持有人否决的时候，这部分项目代币需要分配给小额持有人。gwy提交zf工作报告交由rmdbdh审议，最弱小的一部分人，如果有一定比例反对，那么协议也可以被搁置。赋能弱者也是Dao的一个特色，他保证了整个协议的可持续运行。
+- 预言机的思考。这个问题我觉得是借贷协议的核心，之前文章<a href="https://mp.weixin.qq.com/s/GlkX1lLu6V6to5KMFfcaJQ">《预言机设计&ndash;从Libor改制吸取经验》</a>和<a href="https://mp.weixin.qq.com/s/F4AibkmIt5HpexFGozSd7g">《Uni成为预言机以后的世界》</a> 都提过。好的预言机和坏的语言机差别在哪里？其中一个维度是作恶难度。好的预言机，不太容易被小资金利用。至于其他维度效率和准确性，这里不做展开。在Venus的案例当中，预言机不是主要问题，大量的200万的XVS流通在市场上，约占20%的总量，这么大的流通盘根本不能被预言机机制所规避，真金白银就能有真金白银的成交。
+- 清算机制。**清算人对于抵质押物缺乏信心，容易形成连环清算。**本例中，当抵质押物XVS下跌时，协议清算线被触发，清算人清算后获取了XVS。如果清算人当中有一部分是抵质押物XVS的基石支持者，那么边际上来看，全体清算人在获得抵质押物之后，卖出缩小敞口的动力都会相对弱化，也就不容易进一步造成抵质押物价格的下降。之前也看到过，做清算优化的协议，我认为可以关注下Liquity和LiquityValut。Liquity主要引入稳定池（Stability Pool）的概念，用户在稳定池子中存入稳定币，当触发清算线时，自动清算抵质押物。由于用户在稳定池中为整体借贷协议提供了稳定性，用户一方面可以得到平台的代币线性激励，另一方面也可以以低于市场价10%-20%的价格获取抵质押品。站在协议全局来看，这一部分用户就是奔着获取低成本的抵质押品来的，相对来说对于抵质押品本身会更认可。并且由于清算是自动发生的，抵质押物并未拍卖或者卖出进入市场流通，不会进一步造成抵押品价格下跌，从而引发次生的灾难。我自己写过简略的<a href="https://mp.weixin.qq.com/s/pB2Y_ZJBC81mvhMvnoY6Ng">《资产负债表角度看Liquity》</a>，推荐太和资本一篇文章<a href="https://mp.weixin.qq.com/s/NaU6-g_j6tnsNVJ9WG97lQ">《太和观察 | Liquity:稳定币分级清算机制探索》</a>，这篇写的更深入。</p>
+<p>参考：</p>
+<ol>
+<li><a href="https://blog.venus.io/venus-incident-report-xvs-liquidations-451be68bb08f">Venus Incident Report — XVS Liquidations</a></li>
+</ol>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="false/post/readme/" data-toggle="tooltip" data-placement="top" title="Clean White Theme for Hugo">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="../../../../tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="../../../../false/tags/docker" title="docker">
+                            docker
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="../../../../false/tags/istio" title="istio">
+                            istio
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="../../../../false/tags/kubernetes" title="kubernetes">
+                            kubernetes
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="../../../../false/tags/microservice" title="microservice">
+                            microservice
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="../../../../false/tags/security" title="security">
+                            security
+                        </a>
+                        
+                        
+                        
+                        <a href="../../../../false/tags/service-mesh" title="service-mesh">
+                            service-mesh
+                        </a>
+                        
+                        
+                        
+                        <a href="../../../../false/tags/tips" title="tips">
+                            tips
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://github.com/0x-Yolo">Yolo Notes</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                    
+                    <li>
+                        <a href="mailto:hashyolo123@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/0x-Yolo/">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Forerun Lab 2021
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

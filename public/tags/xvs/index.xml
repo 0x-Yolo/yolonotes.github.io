@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XVS on Forerun Lab</title>
+    <link>false/tags/xvs/</link>
+    <description>Recent content in XVS on Forerun Lab</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="false/tags/xvs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Yolo：从XVS事件看借贷协议的治理与清算</title>
+      <link>false/2020/05/05/introducing-XVS-risk-event/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>false/2020/05/05/introducing-XVS-risk-event/</guid>
+      <description>事件回顾 Venus大幅的涨跌引发了无数讨论，各类阴谋论层出不穷。这里不概述事件了，用一个圈友的比喻作为引子。 就是本来100个鸡蛋一个10块钱</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tops on Forerun Lab</title>
+    <link>false/top/</link>
+    <description>Recent content in Tops on Forerun Lab</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="false/top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>false/top/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>false/top/about/</guid>
+      <description>Forerun Community is a Digital Dao specializing in the blockchain industry and the decentralized finance. We aim to connect entrepreneurs, investors, executives, engineers, academics, industry experts, and others in the technology ecosystem. We have built a network of experts including technical and executive talent; top media and marketing resources; Fortune 500/Global 2000 companies; as well as other technology decision makers, influencers, and key opinion leaders.
+Forerun Community uses this network as part of our commitment to help our partnership grow their business, so our operating teams provide entrepreneurs with access to expertise and insights across the entire spectrum of company building.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>false/top/books/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>false/top/books/</guid>
+      <description>Machine learning学习笔记 Coursera 在线课程 Machine learning 笔记讲师: 吴恩达(Andrew Ng) 课程地址：https://www.coursera.org/lear</description>
+    </item>
+    
+  </channel>
+</rss>
